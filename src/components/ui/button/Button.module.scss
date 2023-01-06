@@ -1,5 +1,5 @@
 .button {
-	@apply block bg-[#B7E919] border-[#688609] border border-solid uppercase px-7 py-3 w-10/12 mx-auto mt-5 transition-colors duration-500 ease-in-out;
+	@apply block bg-[#B7E919] border-[#688609] border border-solid uppercase px-3 py-3 w-10/12 mx-auto mt-5 transition-colors duration-500 ease-in-out;
 
 	&:hover {
 		@apply bg-[#88ff00];

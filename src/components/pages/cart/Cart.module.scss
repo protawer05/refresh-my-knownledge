@@ -1,0 +1,11 @@
+.cart {
+	> div {
+		@apply border border-solid mb-2 py-2 px-4 flex justify-between items-center;
+	}
+}
+.emptyCart {
+	font-size: 21px;
+	text-align: center;
+	font-weight: bold;
+	color: rgb(138, 220, 30);
+}

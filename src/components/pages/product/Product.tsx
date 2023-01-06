@@ -5,15 +5,20 @@ import { useQuery } from '@tanstack/react-query'
 import { ProductService } from '../../../services/product.service'
 import Button from '../../ui/button/Button'
 import Gallery from './gallery/Gallery'
+import { useTypedSelector } from '../../../hooks/useTypedSelector'
+import { useActions } from '../../../hooks/useActions'
 
 const Product: FC = () => {
-	const { id } = useParams()
+	const { id: productId } = useParams()
 	const {
 		data: product,
 		isError,
 		isLoading
-	} = useQuery(['product', id], () => ProductService.getProductsById(id || ''))
-
+	} = useQuery(['product', productId], () =>
+		ProductService.getProductsById(productId || '')
+	)
+	const { items } = useTypedSelector(state => state.cart)
+	const { addToCart, removeFromCart } = useActions()
 	if (isLoading) {
 		return (
 			<Layout>
@@ -28,18 +33,26 @@ const Product: FC = () => {
 			</Layout>
 		)
 	}
+	const isInCart = items.some(item => item.id === Number(productId))
 
 	return (
 		<Layout>
 			<h1 className={'text-3xl font-semibold mb-3 mt-4'}>{product.title}</h1>
 			<Gallery images={product?.images} />
-			<div className={'text-lg text-center'}>
+			<div className={'text-xl text-center mt-3'}>
 				{new Intl.NumberFormat('en-US', {
 					style: 'currency',
 					currency: 'USD'
 				}).format(product.price)}
 			</div>
-			<Button>Add to cart</Button>
+			<Button
+				style={isInCart ? { backgroundColor: 'red' } : {}}
+				onClick={() =>
+					isInCart ? removeFromCart(Number(productId)) : addToCart(product)
+				}
+			>
+				{isInCart ? 'This product is already in cart' : 'Add to cart'}
+			</Button>
 		</Layout>
 	)
 }
