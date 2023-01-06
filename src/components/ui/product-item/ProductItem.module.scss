@@ -1,0 +1,12 @@
+.item {
+	.image {
+		@apply border border-solid mb-4 w-full h-44 bg-cover bg-center bg-no-repeat;
+	}
+	> .heading {
+		@apply text-xl uppercase mb-1 font-semibold;
+	}
+
+	> .price {
+		@apply text-lg;
+	}
+}

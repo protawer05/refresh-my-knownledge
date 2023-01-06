@@ -1,0 +1,20 @@
+.layout {
+	@apply p-5 py-5;
+	header {
+		nav {
+			@apply flex items-center justify-center mb-5;
+
+			a {
+				@apply text-lime-600 font-medium mx-4 transition-colors duration-500 ease-in-out border border-solid border-transparent;
+
+				&:hover {
+					@apply border-b-lime-600;
+				}
+			}
+		}
+	}
+}
+
+.heading {
+	@apply text-3xl font-semibold mb-4;
+}
